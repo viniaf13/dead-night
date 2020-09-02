@@ -34,8 +34,11 @@ public class NavAgentExample : MonoBehaviour
 
     private void Update()
     {
+        //_navMeshAgent.HasPath == false bugged when jumping. Better when not using offmesh links
+
         //If it is not currently on a path and has not asked for another, set next destination
-        if (_navMeshAgent.hasPath == false && !_navMeshAgent.pathPending)
+        if ((_navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance) 
+             && !_navMeshAgent.pathPending)
         {
             currentWaypointIndex++;
             SetNextDestination();
